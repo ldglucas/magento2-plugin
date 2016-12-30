@@ -1,0 +1,597 @@
+/*****
+*
+*	.LESS estilos para AdminPlanesCuotas de Decidir
+*	@author Ezequiel Alba
+*
+*****/
+
+//Variables
+@color-title: #333333;
+@border-title: #999999;
+@size-normal: 12px;
+@size-big: 16px;
+@border-select: lightgray;
+@loader-bg-color: rgba(239,239,239, 0.9);
+@border-reintegro: #dddddd;
+@border-reintegro-after: rgba(255, 255, 255, 0);
+@border-reintegro-before: rgba(221, 221, 221, 0);
+@icon-bg-color: #efefef;
+@color-blanco: #ffffff;
+@color-action: #1979c3;
+
+//Breakpoints
+@big-one: 990px;
+@big-break: 769px;
+@small-one: 600px;
+@mobile-one: 479px;
+@mobile-two: 399px;
+
+
+//Mixins
+.transition-ids(@type: all; @time: 0.1s; @animation: ease;) {
+    -webkit-transition: @type @time @animation;
+    -moz-transition: @type @time @animation;
+    -ms-transition: @type @time @animation;
+    -o-transition: @type @time @animation;
+    transition: @type @time @animation;
+}
+.transform-ids(@property: translateX(-50%);) {
+	transform: @property;
+    -webkit-transform: @property;
+    -moz-transform: @property;
+    -ms-transform: @property;
+    -o-transform: @property;
+}
+.display-flex() {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+.flex(@grow: 1; @shrink: 0; @basis: auto;) {
+	flex: @grow @shrink @basis;
+    -webkit-flex: @grow @shrink @basis;
+    -ms-flex: @grow @shrink @basis;
+    -webkit-box-flex: @grow @shrink @basis;
+}
+
+//Estilos
+.no-display-2 {
+	display: none !important;
+}
+
+.adminplanes-loader {
+    background-image: url('../images/loader.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: @loader-bg-color;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+.selector-cuotas{
+    padding: 0px;
+    position: relative;
+    box-sizing: border-box;
+
+    .title h2 {
+        margin: 0 0 15px 0;
+        font-size: @size-normal;
+        font-weight: 700;
+        color: @color-title;
+        text-transform: uppercase;
+    }
+
+    > div.bancos-disponibles{
+        padding-top: 10px;
+        .title h2 {
+            margin-top: 0px;
+        }
+
+        & + .cuotas-disponibles{
+            padding-top: 10px;
+        }
+        &.no-display-2 + .cuotas-disponibles{
+            padding-top: 0px;
+        }
+    }
+    ul#bancos-disponibles,
+    ul.tarjetas-disponibles{
+        padding: 0;
+        font-size: 0;
+    }
+
+    .radio-left:focus,
+    input:not([disabled]):focus {
+        box-shadow: none;
+    }
+
+    > ul.form-list {
+        list-style: none;
+        padding: 0;
+        margin: 15px 0;
+    }
+
+    .box-tarjeta,
+    .box-banco {
+        display: inline-block;
+        width: 11%;
+        text-align: center;
+        margin: 0 10px 10px 0;
+        font-size: @size-normal;
+        padding: 0;
+        overflow: hidden;
+        box-sizing: border-box;
+        vertical-align: top;
+        position: relative;
+        background-color: white;
+        border: 1px solid @border-select;
+        .transition-ids(all; 0.1s; ease;);
+
+        @media screen {
+            @media (max-width: @big-one) {
+                width: 16%;
+            }
+
+            @media (max-width: @big-break) {
+                width: 13%;
+            }
+
+
+            @media (max-width: @small-one) {
+                width: 17%;
+            }
+
+            @media (max-width: @mobile-one) {
+                width: 24%;
+            }
+        }
+        /*
+        &:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 0;
+            background: @border-select;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            .transition-ids(height; 0.2s; ease;);
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 100%;
+            background: @border-select;
+            position: absolute;
+            top: 0;
+            left:0;
+            z-index: 1;
+            .transition-ids(width; 0.2s; ease;);
+        }
+        */
+        &:hover,
+        &:focus {
+            cursor: pointer;
+            border: 1px solid @color-title;
+        }
+
+        &.tarjeta-seleccionada,
+        &.banco-seleccionado{
+            border: 1px solid @color-title;
+        }
+
+        .radio-left {
+            display: none;
+            vertical-align: middle;
+            float: none;
+            margin: 0;
+        }
+
+        label {
+            display: none;
+        }
+
+        img {
+            width: 100%;
+            max-width: 90px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .tarjeta-seleccionada,
+    .banco-seleccionado {
+        .transition-ids(all; 0.25s; ease;);
+
+        &:after {
+            .transition-ids(all; 0.35s; ease;);
+            width: 100%;
+        }
+
+        &:before {
+            height: 100%;
+        }
+    }
+
+    .box-tarjeta .box-tarjeta-interna,
+    .box-banco .box-banco-interna {
+        background-color: white;
+        z-index: 2;
+        position: relative;
+        margin: 1px;
+        padding: 5px;
+    }
+
+    #cuotas-disponibles {
+        .display-flex();
+        flex-wrap: wrap;
+        flex-direction: row;
+        -webkit-flex-direction: row;
+        justify-content: flex-start;
+        -webkit-justify-content: flex-start;
+        align-items: stretch;
+        -webkit-align-items: stretch;
+        align-content: stretch;
+        -webkit-align-content: stretch;
+        .transition-ids(all; 0.25s; ease;);
+    }
+    
+    .cuotas-disponibles {
+        margin-top: 0;
+        position: relative;
+        .transition-ids(all; 0.25s; ease;);
+    }
+
+    .box-plan-cuota {
+        border: 1px solid @border-select;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        width: 32%;
+        height: 85px;
+        text-align: center;
+        margin: 0 2% 15px 0;
+        box-sizing: border-box;
+        padding: 10px 2px;
+
+        &:nth-child(3n+3) {
+            margin-right: 0;
+        }
+
+        @media screen {
+            @media (min-width: @big-break) and (max-width: @big-one) {
+                width: 49%;
+                margin: 0 2% 15px 0;
+                &:nth-child(3n+3) {
+                    margin-right: 2%;
+                }
+                &:nth-child(2n+2) {
+                    margin-right: 0;
+                }
+            }
+            @media (max-width: @small-one) {
+                width: 49%;
+                margin: 0 2% 15px 0;
+                &:nth-child(3n+3) {
+                    margin-right: 2%;
+                }
+                &:nth-child(2n+2) {
+                    margin-right: 0;
+                }
+            }
+            @media (max-width: @mobile-one) {
+                width: 100%;
+                margin: 0 0 15px 0;
+
+                &:nth-child(3n+3),
+                &:nth-child(2n-2) {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &:hover,
+        &:focus{
+            border-color: @color-title;
+        }
+
+        &.cuota-seleccionada {
+            border-color: @color-title;
+            .transition-ids(all; 0.25s; ease;);
+        }
+
+        &:hover,
+        &:focus {
+            cursor: pointer;
+        }
+
+        input {
+            display: none;
+            margin: 0;
+        }
+
+        .right-cuota {
+            display: block;
+            width: 100%;
+            position: relative;
+            top: 50%;
+            .transform-ids(translateY(-50%););
+
+            .cuota {
+                font-size: 14px;
+                display: block;
+
+                @media screen {
+                    @media (max-width: @small-one) {
+                        font-size: @size-normal;
+                    }
+                }
+
+                strong {
+                    width: 100%;
+                    display: block;
+                }
+            }
+
+            .reintegro {
+                font-size: @size-normal;
+                display: block;
+            }
+        }
+
+        i.mas-info {
+            color: @color-title;
+            background-color: @icon-bg-color;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border: 1px solid @border-reintegro;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            display: inline-block;
+            font-style: normal;
+            position: relative;
+            font-weight: normal;
+            vertical-align: middle;
+            margin-left: 0px;
+
+            &:after {
+                content: '?';
+                display: block;
+                position: absolute;
+                font-size: @size-normal;
+                color: @color-title;
+                left: 50%;
+                .transform-ids(translateX(-50%););
+            }
+
+            &:hover,
+            &:focus {
+                cursor: pointer;
+            }
+        }
+
+        .reintegro-pop {
+            position: absolute;
+            background-color: white;
+            border: 1px solid @border-reintegro;
+            top: -35px;
+            display: none;
+            width: 100%;
+            z-index: 99;
+            font-size: @size-normal;
+            color: #666666;
+            padding: 10px;
+            left: 0;
+            box-sizing: border-box;
+
+            @media screen {
+                @media (max-width: @mobile-one) {
+                    width: 170px;
+                    top: -20px;
+                    left: -15px;
+                }
+                @media (max-width: @mobile-two) {
+                    width: 100%;
+                    top: -30px;
+                    left: -15px;
+                }
+            }
+
+            &:after,
+            &:before {
+                top: 100%;
+                left: 75%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+
+                @media screen {
+                    @media (max-width: @small-one) {
+                        display: none;
+                    }
+                }
+            }
+
+            &:after {
+                border-color: @border-reintegro-after;
+                border-top-color: #fff;
+                border-width: 8px;
+                margin-left: -8px;
+            }
+
+            &:before {
+                border-color: @border-reintegro-before;
+                border-top-color: @border-reintegro;
+                border-width: 9px;
+                margin-left: -9px;
+            }
+
+            p {
+                margin:0;
+            }
+
+            i.cerrar-div {
+                color: #555555;
+                background-color: @icon-bg-color;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border: 1px solid @border-reintegro;
+                width: 16px;
+                height: 16px;
+                text-align: center;
+                display: inline-block;
+                font-style: normal;
+                position: absolute;
+                font-weight: normal;
+                vertical-align: middle;
+                top: -5px;
+                right: -5px;
+
+                &:after {
+                    content: 'x';
+                    font-size: @size-normal;
+                    margin-top: -1px;
+                }
+            }
+        }
+    }
+}
+.plan-seleccionado{
+    button{
+        margin: 10px 0;
+    }
+}
+ul.detalles-plan-seleccionado-token,
+ul.detalles-plan-seleccionado{
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 5;
+
+    li{
+        text-transform: uppercase;
+        font-size: @size-normal;
+        margin-bottom: 0;
+
+        span{
+            font-weight: 700;
+        }
+    }
+}
+
+ul.detalles-plan-seleccionado li{
+    margin-bottom: 5px;
+}
+
+ul.detalles-plan-seleccionado-token + ul.tarjetas-tokenizadas{
+    margin: 15px 0;
+}
+
+.sps-datos-tarjeta-tokenizada{
+
+    ul{
+        padding: 0;
+        .sps-codigo-seguridad-token{
+            border-top: 1px dotted @border-select;
+            border-bottom: 1px dotted @border-select;
+            padding: 10px 0;
+            label{
+                margin-bottom: 5px;
+                display: block;
+            }
+
+            &.no-display-2{
+                border-top: 0;
+                border-bottom: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+li.tarjetas-disponibles, 
+li.bancos-disponibles, 
+li.cuotas-disponibles{
+    overflow: auto;
+}
+
+
+.modal-popup.calculador-cuotas{
+    
+    .modal-inner-wrap{
+        max-width: 600px;
+        .modal-header{
+            h1{
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.calculador-cuotas-producto,
+.calculador-cuotas-checkout{
+    display: block;
+    padding: 8px 12px;
+    border: 1px dotted @border-select;
+    background: @color-blanco;
+    margin-top: 15px;
+    a{
+        text-transform: uppercase;
+        font-size: @size-normal;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+        color: @border-title;
+        font-weight: 600;
+
+        span{
+            padding: 0 0 0 25px;
+            position: relative;
+            display: inline-block;
+
+            &:before{
+                content: ' ';
+                line-height: 0;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                background-image: url('../images/icon_calcularcuotas.png');
+                background-position: 0 0;
+                background-size: 40px;
+                margin-right: 5px;
+                margin-top: -10px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+        &:hover{
+            color: @color-title;
+
+            span{
+                &:before{
+                    background-position: -20px 0;
+                }
+            }
+        }
+    }
+}
+.calculador-cuotas-producto{
+    display: inline-block;
+    margin-top: 0;
+    a{
+        text-align: left;
+    }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Decidir_AdminPlanesCuotas::css/adminplanescuotas.css"/>
+        <title>Editar plan de pago</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Decidir\AdminPlanesCuotas\Block\Adminhtml\PlanPago\Edit\Container" name="adminplanescuotas_planpago_head" template="Decidir_AdminPlanesCuotas::planpago/edit/head.phtml" cacheable="false"/>
+            <block class="Decidir\AdminPlanesCuotas\Block\Adminhtml\PlanPago\Edit\Container" name="adminplanescuotas_planpago_form" template="Decidir_AdminPlanesCuotas::planpago/content.phtml" cacheable="false" />
+
+            <!--
+            @TODO Descomentar cuando se implemente la asignacion de un plan a determinados productos unicamente
+            <block class="Decidir\AdminPlanesCuotas\Block\Adminhtml\PlanPago\Product\Grid\Product" name="adminplanescuotas_planpago_product_grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">gridAgregarProductosPlan</argument>
+                    <argument name="use_ajax" xsi:type="string">1</argument>
+                    <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                    <argument name="grid_url" xsi:type="url" path="*/*/gridProducto">
+                        <param name="_current">1</param>
+                    </argument>
+                </arguments>
+            </block>
+            -->
+        </referenceContainer>
+    </body>
+</page>

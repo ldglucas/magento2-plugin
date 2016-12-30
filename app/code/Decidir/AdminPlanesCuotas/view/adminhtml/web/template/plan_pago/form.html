@@ -1,0 +1,168 @@
+<ul class="agregar-plan">
+    <form action="" method="post" id="plan-pago-form" enctype="multipart/form-data" data-plan-id=""
+          data-bind="submit: guardarPlan,attr:{'data-plan-id':getPlanPagoId()}" >
+        <li class="plan-tarjeta">
+            <div class="input-box plan">
+                <label>Nombre del plan:</label>
+                <input type="text" placeholder="Nombre del plan" class="plan-dato input-text admin__control-text required-entry nombre"
+                   data-bind="value: nombre" required="" aria-required="true" name="nombre" id="plan_nombre">
+            </div>
+        </li>
+        <li class="plan-tarjeta">
+            <div class="input-box">
+                <label>Tarjeta:</label>
+                <select name="tarjeta"
+                class="plan-dato selector-tarjeta select admin__control-select"
+                data-bind="
+                value:tarjeta,
+                options: getTarjetasDisponibles(),
+                optionsValue: 'value',
+                optionsText: 'text'">
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Banco:</label>
+                <select name="banco"
+                    class="plan-dato selector-banco select admin__control-select"
+                    data-bind="
+                    value:banco,
+                    options: getBancosDisponibles(),
+                    optionsValue: 'value',
+                    optionsText: 'text'">
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Desde:</label>
+                <input type="text" placeholder="Vigente desde" class="plan-dato input-text admin__control-text hasDatepicker fecha"
+                       name="vigente_desde" id="vigente_desde" data-bind="value:vigente_desde, datepicker:{storage: vigente_desde, options: optionsDatepicker }"
+                       required="" aria-required="true" style="width: 190px;">
+            </div>
+            <div class="input-box">
+                <label>Hasta:</label>
+                <input type="text" placeholder="Vigente hasta" class="plan-dato input-text admin__control-text hasDatepicker fecha"
+                       name="vigente_hasta" data-bind="value:vigente_hasta, datepicker:{storage: vigente_hasta, options: optionsDatepicker }"
+                       required="" aria-required="true" style="width: 190px;">
+            </div>
+            <div class="input-box">
+                <label>Prioridad del plan:</label>
+                <input type="number" placeholder="Prioridad" class="plan-dato input-text admin__control-text prioridad"
+                   name="prioridad" data-bind="value:prioridad" type="number" min="0">
+                <i class="help-admin" data-bind="event: {mouseover: mostrarInfoPrioridad, mouseout: ocultarInfoPrioridad}"></i>
+                <div id="info-prioridad">
+                    <p>Si hay dos o más planes de cuotas para una misma "Tarjeta - Banco", se mostrará el de mayor prioridad <em>(mayor número = mayor prioridad)</em>.</p>
+                </div>
+            </div>
+            <div class="input-box check-active">
+                <input type="checkbox" id="check-activo" class="plan-dato admin__control-checkbox" name="activo"
+                   data-bind="checked:activo">
+                <label class="admin__field-label" for="check-activo">Activo</label>
+            </div>
+        </li>
+
+        <li class="plan-tarjeta">
+            <div class="input-box">
+                <label>Días aplicables:</label>
+                <select name="dias" multiple="multiple"
+                class="plan-dato selector-dias select multiselect admin__control-multiselect"
+                data-bind="
+                    value:dias,
+                    options: getDias(),
+                    optionsValue: 'value',
+                    optionsText: 'text',
+                    selectedOptions:diasVigente">
+                </select>
+            </div>
+        </li>
+	<li class="plan-tarjeta">
+		<div>
+			<h3>Referencias:</h3>
+			<ul>
+				<li>Cuota: Nro de cuota</li>
+				<li>Inter&eacute;s: Porcentaje de inter&eacute;s a aplicar, ej: 20.89</li>
+				<li>Reintegro bancario: Si existiera, especificar a t&iacute;tulo informativo el reintegro bancario porcentual o nominal</li>
+				<li>Descuento: Descuento a aplicar sobre el total de la compra de forma porcentual o nominal</li>
+				<li>Cuota a enviar: Para el caso del plan Ahora 12, Ahora 18 o similares, especificar el valor de cuota a enviar a Decidir, si no se completa se env&iacute;a el valor del campo cuota.</li>
+			</ul>
+		</div>
+	</li>
+        <!--
+        @TODO Descomentar e implementar la funcion de "no acumulable con las siguientes promociones"
+        <li class="plan-tarjeta">
+            <input type="checkbox" class="plan-cuota admin__control-checkbox" name="promociones_acumulables"
+                   data-bind="checked: promocionesNoAcumulablesCheck,event:{click:limpiarSelectPromociones}" id="promociones_no_acumulables_check">
+            <label class="admin__field-label" for="promociones_no_acumulables_check">
+                No acumulable con las siguientes promociones:
+            </label>
+            <div class="promociones-box" data-bind="visible: promocionesNoAcumulablesCheck"
+                 style="margin-top:15px;width: 400px;height: 200px">
+                <select name="promociones_no_acumulables" multiple="multiple" style="margin: 0;width: 100%;height: 165px;"
+                        class="admin__control-multiselect"
+                        data-bind="
+                            options: getPromocionesCarrito(),
+                            optionsValue: 'value',
+                            optionsText: 'text',
+                            selectedOptions:promocionesNoAcumulables,
+                            value:promocionesCarrito">
+                </select>
+            </div>
+        </li>
+        -->
+        <ul class="cuotas" data-bind="foreach: getCuotas()">
+            <li class="plan-cuota">
+                <label data-bind="attr:{'for': 'cuota_' + $data.cuota}" >Cuota:</label>
+                <input type="number" min="1" class="plan-cuota input-text admin__control-text" name="cuota"
+                       data-bind="value: $data.cuota,attr:{'id': 'cuota_' + $data.cuota}" required="" aria-required="true"/>
+                <label data-bind="attr:{'for': 'interes_' + $data.cuota}">% Interés:</label>
+                <input type="text" class="plan-cuota input-text admin__control-text" name="interes"
+                       data-bind="value: $data.interes,attr:{'id': 'interes_' + $data.cuota}" required="" aria-required="true" data-tooltip="Ejemplo: 20.12">
+<!--                <i class="help-admin" data-bind="event: {mouseover: mostrarInfoInteres, mouseout: ocultarInfoInteres}"></i>
+                <div id="info-interes">
+			<p>Ejemplo: 20.12</p>
+                </div>
+-->                <label data-bind="attr:{'for': 'reintegro_' + $data.cuota}">Reintegro bancario:</label>
+                <input type="text" class="plan-cuota input-text admin__control-text" name="reintegro"
+                       data-bind="value: $data.reintegro,attr:{'id': 'reintegro_' + $data.cuota}">
+                <select name='tipo_reintegro' class='plan-cuota selector-reintegro select admin__control-select'
+                    data-bind="value:$data.tipo_reintegro">
+                    <option value='1'>%</option>
+                    <option value='2'>$</option>
+                </select>
+                <label data-bind="attr:{'for': 'descuento_' + $data.cuota}">Descuento:</label>
+                <input type="text" class="plan-cuota input-text admin__control-text" name="descuento"
+                       data-bind="value: $data.descuento,attr:{'id': 'descuento_' + $data.cuota}">
+                <select name='tipo_descuento' class='plan-cuota selector-descuento select admin__control-select'
+                        data-bind="value:$data.tipo_descuento">
+                    <option value='1'>%</option>
+                    <option value='2'>$</option>
+                </select>
+                <label data-bind="attr:{'for': 'cuota_enviar_' + $data.cuota}">Cuota a enviar:</label>
+                <input type="number" min="0" class="plan-cuota input-text admin__control-text cuota-enviar" name="cuota_enviar"
+                       data-bind="value: $data.cuota_enviar,attr:{'id': 'cuota_enviar_' + $data.cuota}" data-tooltip="Para el caso en que haya que enviar a Decidir una cuota diferente (Ej: Ahora 12), colocar en este campo el valor correspondiente. Si no se coloca se envía el valor del campo Cuota.">
+<!--                <i class="help-admin" data-bind="event: {mouseover: mostrarInfoCuota, mouseout: ocultarInfoCuota}"></i>
+                <div id="info-cuota">
+			<p>Para el caso en que haya que enviar a Decidir un valor de cuota diferente (Ej: Ahora 12), colocar en este campo el valor correspondiente. Si no se coloca se envía elvalor del campo Cuota.</p>
+                </div>
+-->
+                <button onclick="jQuery(this).parent().remove()" class="action-delete eliminar-cuota" type="button" title="Eliminar Cuota"><span>Delete</span></button>
+            </li>
+        </ul>
+        <li class="plan-tarjeta guardar">
+            <button class="primary" data-bind="event:{click:agregarCuota}" >+ Agregar cuota</button>
+            <input type="submit" id="guardar-plan" class="action-primary primary" value="Guardar plan"/>
+        </li>
+    </form>
+</ul>
+<script type="text/x-magento-init">
+    {
+        "#plan-pago-form": {
+            "validation": {}
+        }
+    }
+</script>
+
+<!--
+@TODO Descomentar cuando se implemente la asignacion de un plan a determinados productos unicamente
+<h2 class="title-productos">
+    Asignar productos específicos a plan de cuota:
+</h2>
+-->

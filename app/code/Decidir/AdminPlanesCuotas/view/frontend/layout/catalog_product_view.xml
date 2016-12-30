@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Layout para el calculador de cuotas en la pagina de producto
+*
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Decidir_AdminPlanesCuotas::css/adminplanescuotas.css"/>
+    </head>
+    <body>
+        <referenceContainer name="product.info.main">
+            <container name="adminplanescuotas.calculador" htmlTag="div" htmlClass="calculador-cuotas-producto" before="product.info.social" as="calculador_cuotas" label="Calculador de cuotas">
+                <block class="Decidir\AdminPlanesCuotas\Block\Catalog\Product\View\CalculadorCuotas" name="adminplanescuotas.calculador.producto" template="calculador_cuotas.phtml"/>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

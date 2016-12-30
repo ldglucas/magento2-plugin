@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Layout para agregar descuentos por pago en cuotas
+*
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="invoice_totals">
+            <block class="Decidir\AdminPlanesCuotas\Block\Sales\Order\DescuentoCuota" name="descuento_cuota"/>
+        </referenceContainer>
+    </body>
+</page>

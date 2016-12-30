@@ -1,0 +1,15 @@
+"SPS DECIDIR","SPS DECIDIR"
+Habilitado,Habilitado
+"Titulo del método de pago","Titulo del método de pago"
+"Token de seguridad","Token de seguridad"
+"ID de comercio","ID de comercio"
+Modo,Modo
+"Configuracion de medios de pago","Configuracion de medios de pago"
+"Tarjetas de credito habilitadas","Tarjetas de credito habilitadas"
+"Ambiente de desarrollo","Ambiente de desarrollo"
+"Url de Servicio Authorize (WSDL)","Url de Servicio Authorize (WSDL)"
+"Dirección para Authorize (Endpoint)","Dirección para Authorize (Endpoint)"
+"Url de Servicio Operation (WSDL)","Url de Servicio Operation (WSDL)"
+"Dirección para Operation (Endpoint)","Dirección para Operation (Endpoint)"
+"Javascript SPS","Javascript SPS"
+"Ambiente de produccion","Ambiente de produccion"

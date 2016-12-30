@@ -1,0 +1,78 @@
+<h1>EEEEEEEEEEEEEEEEEEEE RRRRRRRRR</h1>
+
+<script>
+
+
+        <?php //if ( ($blockGrid = $block->getLayout()->createBlock(
+//        'Decidir\AdminPlanesCuotas\Block\Adminhtml\PlanPago\Product\Grid\Product',
+//        'category.product.grid'
+//    )) && ($_gridJsObject = $blockGrid->getJsObjectName()) ): ?>
+//
+//    require([
+//        "mage/adminhtml/grid"
+//    ], function(){
+
+//        var categoryProducts = {};//$H(<?php //// /* @escapeNotVerified */ echo $block->getProductsJson() ?>//);
+//        //$('in_category_products').value = Object.toJSON(categoryProducts);
+//
+//        function registerCategoryProduct(grid, element, checked){
+//            if(checked){
+//                if(element.positionElement){
+//                    element.positionElement.disabled = false;
+//                    categoryProducts.set(element.value, element.positionElement.value);
+//                }
+//            }
+//            else{
+//                if(element.positionElement){
+//                    element.positionElement.disabled = true;
+//                }
+//                categoryProducts.unset(element.value);
+//            }
+//            $('in_category_products').value = Object.toJSON(categoryProducts);
+//            grid.reloadParams = {'selected_products[]':categoryProducts.keys()};
+//        }
+//        function categoryProductRowClick(grid, event){
+//            var trElement = Event.findElement(event, 'tr');
+//            var isInput   = Event.element(event).tagName == 'INPUT';
+//            if(trElement){
+//                var checkbox = Element.getElementsBySelector(trElement, 'input');
+//                if(checkbox[0]){
+//                    var checked = isInput ? checkbox[0].checked : !checkbox[0].checked;
+//                    <?php /////* @escapeNotVerified */ echo $_gridJsObject ?>//.setCheckboxChecked(checkbox[0], checked);
+//                }
+//            }
+//        }
+//        function positionChange(event){
+//            var element = Event.element(event);
+//            if(element && element.checkboxElement && element.checkboxElement.checked){
+//                categoryProducts.set(element.checkboxElement.value, element.value);
+//                $('in_category_products').value = Object.toJSON(categoryProducts);
+//            }
+//        }
+//
+//        var tabIndex = 1000;
+//        function categoryProductRowInit(grid, row){
+//            var checkbox = $(row).getElementsByClassName('checkbox')[0];
+//            var position = $(row).getElementsByClassName('input-text')[0];
+//            if(checkbox && position){
+//                checkbox.positionElement = position;
+//                position.checkboxElement = checkbox;
+//                position.disabled = !checkbox.checked;
+//                position.tabIndex = tabIndex++;
+//                Event.observe(position,'keyup',positionChange);
+//            }
+//        }
+
+
+<?php ///* @escapeNotVerified */ echo $_gridJsObject ?>//.rowClickCallback = categoryProductRowClick;
+//        <?php ///* @escapeNotVerified */ echo $_gridJsObject ?>//.initRowCallback = categoryProductRowInit;
+//        <?php ///* @escapeNotVerified */ echo $_gridJsObject ?>//.checkboxCheckCallback = registerCategoryProduct;
+//        if(<?php ///* @escapeNotVerified */ echo $_gridJsObject ?>//.rows) {
+//            <?php ///* @escapeNotVerified */ echo $_gridJsObject ?>//.rows.each(function(row){
+//            categoryProductRowInit(<?php ///* @escapeNotVerified */ echo $_gridJsObject ?>//, row)});
+//        }
+//
+//    });
+//
+//    <?php //endif; ?>
+</script>

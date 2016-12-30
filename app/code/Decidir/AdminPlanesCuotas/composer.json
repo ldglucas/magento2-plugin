@@ -1,0 +1,8 @@
+{
+    "name": "decidir/adminplanescuotas",
+    "description": "Administrador de cuotas para planes de pago",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+    }
+}

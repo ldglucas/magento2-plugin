@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Layout para el checkout
+*
+* @category    Decidir
+* @package     Decidir_SpsDecidir
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Decidir_SpsDecidir::css/sps_decidir.css"/>
+    </head>
+    <body>
+        <!--<referenceBlock name="contenthead.additional">-->
+        <referenceContainer name="content">
+            <block class="Decidir\SpsDecidir\Block\DecidirHead" name="decidir_spsdecidir_decidir" template="decidir_head.phtml" cacheable="false" />
+        </referenceContainer>
+
+        <!--<referenceContainer name="content">-->
+            <!--<block class="Decidir\SpsDecidir\Block\Token" name="decidir_spsdecidir_token" template="token_form.phtml" cacheable="false" />-->
+        <!--</referenceContainer>-->
+
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="renders" xsi:type="array">
+                                                            <!-- merge payment method renders here -->
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="decidir_spsdecidir-payment" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Decidir_SpsDecidir/js/view/payment/decidir-payment</item>
+                                                                    <item name="methods" xsi:type="array">
+                                                                        <item name="decidir_spsdecidir" xsi:type="array">
+                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

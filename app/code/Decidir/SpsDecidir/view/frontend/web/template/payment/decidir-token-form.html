@@ -1,0 +1,78 @@
+<div class="tarjeta-almacenada" style="display: block">
+    <p class="decidir-token-descripcion">Hemos detectado que realizo una compra con anterioridad. Desea realizarla con:</p>
+
+    <form class="form" data-bind="attr: {'id': getCode() + '-form-token'}">
+        <select name="tarjeta-token" class="select" data-bind="options: getTarjetasTokenizadas(),optionsValue: 'value',
+            optionsText: 'text',value:tarjeta_tokenizada, event:{change:cambiarTarjetaTokenizada()}">
+        </select>
+
+        <ul class="detalles-plan-seleccionado-token no-display-2">
+
+        </ul>
+
+        <ul class="tarjetas-tokenizadas" data-bind="foreach: tarjetasTokenizadas">
+            <li class="tarjeta-container" data-bind="attr:{'id': 'tarjeta-token_' + $data.decidir_token_id},visible: $index() == 0">
+                <ul class="info-creditcard">
+                    <span class="banda-magnetica"></span>
+                    <span class="img-tarjeta"><img data-bind="attr:{src:$data.logo_tarjeta}" alt=""></span>
+                    <li class="nombre" data-bind="text:$data.card_holder_name"></li>
+                    <li class="numero">XXXX XXXX XXXX <span data-bind="text:$data.card_number_last_4_digits"></span></li>
+                    <!--<li data-bind="text:$data.card_expiration_month"></li>-->
+                    <!--<li data-bind="text:$data.card_expiration_year"></li>-->
+                    <li class="tarjeta" data-bind="text:$data.nombre_tarjeta"></li>
+                    <li class="banco" data-bind="text:$data.nombre_banco"></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="sps-datos-tarjeta-tokenizada">
+            <ul class="form-list" style="list-style: none;">
+                <li style="display: none">
+                    <input type="hidden" name="sps[token]" id="decidir-token">
+                    <input type="hidden" name="sps[token-tarjeta]" id="decidir-token-tarjeta" data-id-sps="">
+                    <input type="hidden" name="sps[token-banco]" id="decidir-token-banco">
+                    <input type="hidden" name="sps[token-request-key]" id="decidir-token-request-key" value="">
+                </li>
+                <li class="sps-codigo-seguridad-token no-display-2">
+                    <label for="decidir-token-codigo-seguridad" class="required">
+                        Ingrese el c&oacute;digo de seguridad de su tarjeta
+                    </label>
+                    <div class="input-box">
+                        <input type="text" title="Codigo de seguridad" id="decidir-token-codigo-seguridad" style="width: 70px;"
+                               value="" placeholder="Codigo de seguridad" name="sps[tarjeta-codigo-seguridad]"
+                               autocomplete="off"/>
+                        <button id="decidir-token-codigo-seguridad-helper" type="button" tabindex="-1">?</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="botones-token">
+            <button data-bind="event:{click: aplicarToken}" id="aplicar-tarjeta">
+                Utilizar esta tarjeta
+            </button>
+            <button data-bind="event:{click: cambiarTarjeta}" id="cambiar-tarjeta">
+                Utilizar otra tarjeta
+            </button>
+
+            <button data-bind="event:{click: getAuthorizeRequestTokenizado}" class="aplicar-cuotas-token" style="display: none;">
+                Aplicar cuotas
+            </button>
+        </div>
+
+        <div class="primary sps-pagar-btn" style="text-align: right;">
+            <button class="action primary checkout" id="sps-pagar-btn-token" type="submit" disabled
+                    data-bind="attr: {title: $t('Place Order')},css: {disabled: !isPlaceOrderActionAllowed()},
+                    enable: (getCode() == isChecked())" style="display: none">
+                <span data-bind="text: $t('Place Order')"></span>
+            </button>
+
+            <button style="display: none"
+                    type="submit"
+                    data-bind="click: placeOrder"
+                    id="terminar-pedido-sps-token">
+            </button>
+        </div>
+
+    </form>
+</div>

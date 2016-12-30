@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route url="/V1/descuento/plan_pago/:planPagoId/cuota/:cuota" method="PUT">
+        <service class="Decidir\AdminPlanesCuotas\Api\DescuentoInterface" method="set"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+        <data>
+            <parameter name="planPagoId">%plan_pago%</parameter>
+            <parameter name="cuota">%cuota%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/descuento/reset" method="GET">
+        <service class="Decidir\AdminPlanesCuotas\Api\DescuentoInterface" method="reset"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

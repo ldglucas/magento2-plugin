@@ -1,0 +1,23 @@
+<?php /** @var $this \Decidir\AdminPlanesCuotas\Block\PlanPago  */ ?>
+
+<script type="text/javascript">
+    window.checkoutConfig.payment.planesTarjetaCredito       = <?= \Zend_Json::encode($this->getPlanesPago()) ?>;
+    window.checkoutConfig.payment.tarjetasCreditoDisponibles = <?= \Zend_Json::encode($this->getTarjetas()) ?>;
+    window.checkoutConfig.payment.bancosDisponibles          = <?= \Zend_Json::encode($this->getBancos()) ?>;
+    window.checkoutConfig.payment.cuotasPorPlanDisponibles   = <?= \Zend_Json::encode($this->getCuotas()) ?>;
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "admin_planes_cuotas": {
+                        "component": "Decidir_AdminPlanesCuotas/js/view/checkout/plan_pago",
+                        "template" : "Decidir_AdminPlanesCuotas/selector-plan"
+                    }
+                }
+            }
+        }
+    }
+</script>

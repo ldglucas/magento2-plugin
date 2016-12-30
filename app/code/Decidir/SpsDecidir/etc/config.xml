@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Configuraciones por defecto del modulo
+*
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <decidir_spsdecidir>
+                <active>0</active>
+                <model>Decidir\SpsDecidir\Model\Payment</model>
+                <title>Tarjeta de credito</title>
+                <mode>dev</mode>
+                <payment_action>order</payment_action> <!-- Habilita el metodo order() en el modelo del Payment-->
+                <order_status>processing</order_status>
+                <dev>
+                    <wsdl_authorize>https://sandbox.decidir.com/services/t/1.1/</wsdl_authorize>
+                    <endpoint_authorize>https://sandbox.decidir.com/services/t/1.1/</endpoint_authorize>
+                    <wsdl_operation>https://sandbox.decidir.com/services/t/decidir.net/</wsdl_operation>
+                    <endpoint_operation>https://sandbox.decidir.com/services/t/decidir.net/</endpoint_operation>
+                    <javascript>https://sandbox.decidir.com/custom/callback/1.1/payment.js</javascript>
+                    <javascript_token>https://sandbox.decidir.com/custom/callback/1.1/payment.token.js</javascript_token>
+                </dev>
+                <prod>
+                    <wsdl_authorize>https://sps.decidir.com/services/t/1.1/</wsdl_authorize>
+                    <endpoint_authorize>https://sps.decidir.com/services/t/1.1/</endpoint_authorize>
+                    <wsdl_operation>https://sps.decidir.com/services/t/decidir.com.ar/</wsdl_operation>
+                    <endpoint_operation>https://sps.decidir.com/services/t/decidir.com.ar/</endpoint_operation>
+                    <javascript>https://sps.decidir.com/custom/callback/1.1/payment.js</javascript>
+                    <javascript_token></javascript_token>
+                </prod>
+            </decidir_spsdecidir>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,42 @@
+<div class="selector-cuotas" data-bind="scope:'admin_planes_cuotas'">
+
+    <div class="tarjetas-disponibles" id="tarjeta-container">
+        <div class="tarjetas-disponibles title">
+            <h2>Seleccione su tarjeta</h2>
+        </div>
+        <ul class="form-list tarjetas-disponibles" data-bind="foreach: getTarjetasDisponibles()">
+            <li class="box-tarjeta" data-bind="attr:{'id': 'box-tarjeta_' + $data.tarjeta_id},event:{click:function(){$parent.checkInput('box-tarjeta_'+$data.tarjeta_id)}}">
+                <div class="box-tarjeta-interna">
+                    <input name="tarjeta" type="radio" class="radio-left" data-id-sps="" data-id-nps=""
+                           data-bind="value: $data.tarjeta_id,attr:{'id': 'tarjeta_' + $data.tarjeta_id, 'data-id-sps': $data.sps_id,
+                       'data-id-nps': $data.nps_id},event:{click:$parent.getBancosDeTarjeta}" >
+                    <label data-bind="text: $data.tarjeta_nombre,attr:{'for': 'tarjeta_' + $data.tarjeta_id}"></label>
+                    <img data-bind="attr:{'alt': $data.tarjeta_nombre,'src':$data.tarjeta_logo}" />
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="bancos-disponibles no-display-2">
+        <div class="bancos-disponibles title no-display-2">
+            <h2>Seleccione la entidad financiera</h2>
+        </div>
+        <ul id="bancos-disponibles" class="form-list bancos-disponibles no-display-2" data-bind="foreach: getBancosDisponibles()">
+            <li class="box-banco" data-bind="attr:{'id': 'box-banco_' + $data.banco_id},event:{click:function(){$parent.checkInput('box-banco_'+$data.banco_id)}}">
+                <div class="box-banco-interna"> <!-- no-display-2 -->
+                    <input name="banco" type="radio" class="radio-left" data-bind="value: $data.banco_id,attr:{'id': 'banco_' + $data.banco_id},event:{click:$parent.getPlanesPago}">
+                    <label data-bind="text: $data.banco_nombre,attr:{'for': 'banco_' + $data.banco_id}"></label>
+                    <img data-bind="attr:{'alt': $data.banco_nombre,'src':$data.banco_logo}">
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="cuotas-disponibles">
+        <div class="cuotas-disponibles title no-display-2">
+            <h2>Selecciona las cuotas</h2>
+        </div>
+        <div id="cuotas-disponibles" class="cuotas-disponibles">
+        </div>
+    </div>
+</div>

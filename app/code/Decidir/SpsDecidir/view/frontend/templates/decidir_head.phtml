@@ -1,0 +1,18 @@
+<?php
+/**
+ * @description template para cargar el JS de pago de decidir
+ *
+ * @var $this Decidir\SpsDecidir\Block\DecidirHead
+ */
+?>
+<?php if(count($token = $this->getToken())): ?>
+    <script	type='text/javascript' src='<?= $this->getDecidirTokenJs() ?>'></script>
+<?php else: ; ?>
+    <script	type='text/javascript' src='<?= $this->getDecidirPaymentJs() ?>'></script>
+<?php endif; ?>
+
+<script type="text/javascript">
+    window.checkoutConfig.payment.decidirToken = <?= \Zend_Json::encode($token) ?>;
+    window.checkoutConfig.payment.paymentTokenJsDecidir = '<?= $this->getDecidirTokenJs() ?>';
+    window.checkoutConfig.payment.paymentJsDecidir      = '<?= $this->getDecidirPaymentJs() ?>';
+</script>

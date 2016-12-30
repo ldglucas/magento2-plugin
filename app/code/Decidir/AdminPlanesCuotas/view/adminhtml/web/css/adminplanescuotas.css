@@ -1,0 +1,216 @@
+/*****
+*
+*	.LESS estilos para AdminPlanesCuotas/adminhtml de Decidir
+*	@author Ezequiel Alba
+*
+*****/
+.adminplanes-loader {
+  background-image: url('../images/loader.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(239, 239, 239, 0.9);
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+ul.agregar-plan {
+  list-style: none;
+}
+ul.agregar-plan li.plan-tarjeta {
+  display: block;
+  position: relative;
+}
+ul.agregar-plan li.plan-tarjeta .input-box {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 15px 15px 0;
+  position: relative;
+}
+ul.agregar-plan li.plan-tarjeta .input-box.plan {
+  display: block;
+  margin-right: 0;
+}
+ul.agregar-plan li.plan-tarjeta .input-box.check-active {
+  margin: 0;
+}
+ul.agregar-plan li.plan-tarjeta .input-box.check-active label {
+  display: inline-block;
+  margin: 0;
+}
+ul.agregar-plan li.plan-tarjeta .input-box select {
+  display: inline-block;
+  vertical-align: middle;
+}
+ul.agregar-plan li.plan-tarjeta .input-box select.selector-tarjeta {
+  min-width: 185px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box select.selector-banco {
+  min-width: 345px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box select.selector-dias {
+  min-width: 185px;
+  height: 75px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box label {
+  display: block;
+  margin-bottom: 5px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box input {
+  display: inline-block;
+  vertical-align: middle;
+}
+ul.agregar-plan li.plan-tarjeta .input-box button {
+  margin: 0 0 0 -30px;
+  position: relative;
+}
+ul.agregar-plan li.plan-tarjeta .input-box input.prioridad {
+  width: 100px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box input.nombre {
+  width: 350px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box .help-admin {
+  color: #333333;
+  background-color: #efefef;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border: 1px solid #dddddd;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  display: inline-block;
+  font-style: normal;
+  position: relative;
+  font-weight: normal;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box .help-admin:after {
+  content: '?';
+  display: block;
+  position: absolute;
+  font-size: 12px;
+  color: #333333;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+ul.agregar-plan li.plan-tarjeta .input-box .help-admin:hover,
+ul.agregar-plan li.plan-tarjeta .input-box .help-admin:focus {
+  cursor: pointer;
+}
+ul.agregar-plan li.plan-tarjeta .input-box #info-prioridad, ul.agregar-plan li.plan-tarjeta .input-box #info-interes, ul.agregar-plan li.plan-tarjeta .input-box #info-cuotas {
+  display: none;
+  width: 300px;
+  height: auto;
+  background-color: white;
+  border: 1px solid #dedede;
+  padding: 12px;
+  font-size: 12px;
+  position: absolute;
+  top: -95%;
+  left: -15%;
+  z-index: 99;
+}
+ul.agregar-plan li.plan-tarjeta .input-box #info-prioridad p, ul.agregar-plan li.plan-tarjeta .input-box #info-interes p, ul.agregar-plan li.plan-tarjeta .input-box #info-cuotas p {
+  margin-bottom: 0;
+}
+ul.agregar-plan li.plan-tarjeta .input-box #info-prioridad:after,
+ul.agregar-plan li.plan-tarjeta .input-box #info-prioridad:before,
+ul.agregar-plan li.plan-tarjeta .input-box #info-cuotas:after,
+ul.agregar-plan li.plan-tarjeta .input-box #info-cuotas:before,
+ul.agregar-plan li.plan-tarjeta .input-box #info-interes:after,
+ul.agregar-plan li.plan-tarjeta .input-box #info-interes:before {
+  top: 100%;
+  left: 45%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+ul.agregar-plan li.plan-tarjeta .input-box #info-prioridad:after,
+ul.agregar-plan li.plan-tarjeta .input-box #info-cuotas:after,
+ul.agregar-plan li.plan-tarjeta .input-box #info-interes:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #ffffff;
+  border-width: 5px;
+  margin-left: -5px;
+}
+ul.agregar-plan li.plan-tarjeta .input-box #info-prioridad:before,
+ul.agregar-plan li.plan-tarjeta .input-box #info-cuotas:before,
+ul.agregar-plan li.plan-tarjeta .input-box #info-interes:before {
+  border-color: rgba(222, 222, 222, 0);
+  border-top-color: #dedede;
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+ul.agregar-plan ul.cuotas {
+  list-style: none;
+  border: solid 1px #ADADAD;
+  margin: 15px 0;
+  padding: 15px;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota {
+  margin-bottom: 20px;
+  font-size: 0;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota:last-child {
+  margin-bottom: 0;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota input {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  width: 55px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota input.etiqueta {
+  width: 20%;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota select {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  min-width: 60px;
+  margin-bottom: 10px;
+  height: 33px;
+  margin-left: -25px;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota .eliminar-cuota {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  display: inline-block;
+  vertical-align: top;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota .eliminar-cuota > span {
+  display: none;
+}
+ul.agregar-plan ul.cuotas li.plan-cuota .eliminar-cuota:before {
+  content: ' ';
+  background-image: url('../images/remove-item.png');
+  width: 12px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: block;
+  overflow: hidden;
+}
+ul.agregar-plan li.guardar {
+  text-align: right;
+}

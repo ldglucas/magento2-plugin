@@ -1,0 +1,9 @@
+{
+    "name": "decidir/spsdecidir",
+    "description": "Integracion con el metodo de pago de Decidir",
+    "type": "magento2-module",
+    "version": "dev-master",
+    "require": {
+        "decidir/php-sdk":"*"
+    }
+}

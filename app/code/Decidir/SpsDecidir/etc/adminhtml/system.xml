@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Configuraciones del backend, agrega los campos que se encuentran en:
+*   STORES > CONFIGURATION > SALES > PAYMENT METHODS > SPS DECIDIR
+*
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="decidir_spsdecidir" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SPS DECIDIR</label>
+                <comment>
+                    <![CDATA[<h3>Modulo de pago SPS DECIDIR</h3>]]>
+                </comment>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Habilitado</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Habilita o deshabilita el medio de pago</comment>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Titulo del método de pago</label>
+                    <comment>Nombre a mostrar al usuario final. Ejemplo: "Pago con Tarjetas de crédito"</comment>
+                </field>
+                <field id="token" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Token de seguridad</label>
+                    <comment>
+                        Token de Seguridad Generado en el Portal de DECIDIR. Este dato se obtiene enviando un mail a hd@decidir.com.ar.
+                    </comment>
+                </field>
+                <field id="idsite" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>ID Site de Decidir</label>
+                    <comment>Id Site provisto por DECIDIR</comment>
+                </field>
+                <field id="mode" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Modo</label>
+                    <source_model>Decidir\SpsDecidir\Model\Source\Mode</source_model>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Estado de ordenes aprobadas</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <comment>Indica el estado en el que quedará una orden al ser aprobada por decidir.</comment>
+                </field>
+                <!--<field id="url_ok" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">-->
+                    <!--<label>Url de compra exitosa</label>-->
+                    <!--<comment>URL a la que el comprador será dirigido cuando la compra resulte exitosa</comment>-->
+                <!--</field>-->
+
+                <!--<field id="url_error" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">-->
+                    <!--<label>Url de compra fallida</label>-->
+                    <!--<comment>URL a la que el comprador será dirigido cuando la compra no resulte exitosa</comment>-->
+                <!--</field>-->
+                    <!--<field id="allowspecific" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">-->
+                    <!--<label>Allow specific</label>-->
+                <!--</field>-->
+
+                <group id="dev" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ambiente de desarrollo</label>
+                    <field id="wsdl_authorize" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Url de Servicio Authorize (WSDL)</label>
+                    </field>
+                    <field id="endpoint_authorize" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Dirección para Authorize (Endpoint)</label>
+                    </field>
+                    <field id="wsdl_operation" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Url de Servicio Operation (WSDL)</label>
+                    </field>
+                    <field id="endpoint_operation" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Dirección para Operation (Endpoint)</label>
+                    </field>
+                    <field id="javascript" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Javascript SPS</label>
+                    </field>
+                    <field id="javascript_token" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Javascript de tokenizacion SPS</label>
+                    </field>
+                </group>
+                <group id="prod" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ambiente de produccion</label>
+                    <field id="wsdl_authorize" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Url de Servicio Authorize (WSDL)</label>
+                    </field>
+                    <field id="endpoint_authorize" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Dirección para Authorize (Endpoint)</label>
+                    </field>
+                    <field id="wsdl_operation" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Url de Servicio Operation (WSDL)</label>
+                    </field>
+                    <field id="endpoint_operation" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Dirección para Operation (Endpoint)</label>
+                    </field>
+                    <field id="javascript" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Javascript SPS</label>
+                    </field>
+                    <field id="javascript_token" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Javascript de tokenizacion SPS</label>
+                    </field>
+                </group>
+
+            </group>
+        </section>
+    </system>
+</config>

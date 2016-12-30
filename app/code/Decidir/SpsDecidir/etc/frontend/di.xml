@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Inyeccion de dependencias para el metodo de pago.
+
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="Decidir\SpsDecidir\Model\ConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="decidir_spsdecidir" xsi:type="const">Decidir\SpsDecidir\Model\Payment::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="decidir_spsdecidir_config_provider" xsi:type="object">Decidir\SpsDecidir\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

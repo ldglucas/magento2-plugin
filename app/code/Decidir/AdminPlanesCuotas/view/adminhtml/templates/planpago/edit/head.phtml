@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var $this Decidir\AdminPlanesCuotas\Block\Adminhtml\PlanPago\Edit\Container
+ *
+ **/
+?>
+<script type="text/javascript">
+    window.adminPlanesCuotasConfig = new Object();
+    window.adminPlanesCuotasConfig.tarjetas = <?= \Zend_Json::encode($this->getTarjetas()) ?>;
+    window.adminPlanesCuotasConfig.bancos   = <?= \Zend_Json::encode($this->getBancos()) ?>;
+    window.adminPlanesCuotasConfig.dias     = <?= \Zend_Json::encode($this->getDias()) ?>;
+    window.adminPlanesCuotasConfig.admin_url= "<?= $this->getUrl('adminplanescuotas/planpago/admin')?>";
+    window.adminPlanesCuotasConfig.save_url = "<?= $this->getUrl('adminplanescuotas/planpago/save')?>";
+    window.adminPlanesCuotasConfig.plan_pago= <?= \Zend_Json::encode($this->getPlanPago()) ?>;
+    window.adminPlanesCuotasConfig.cuotas   = <?= \Zend_Json::encode($this->getCuotas()) ?>;
+    window.adminPlanesCuotasConfig.promocionesCarrito   = <?= \Zend_Json::encode($this->getPromocionesCarrito()) ?>;
+</script>

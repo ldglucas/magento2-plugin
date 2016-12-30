@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Layout para el checkout
+*
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Decidir_AdminPlanesCuotas::css/adminplanescuotas.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Decidir\AdminPlanesCuotas\Block\PlanPago" name="decidir_adminplanescuotas_head" template="head.phtml" cacheable="false" />
+        </referenceContainer>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="descuento" xsi:type="array">
+                                                            <item name="component"  xsi:type="string">Decidir_AdminPlanesCuotas/js/view/checkout/cart/totals/descuento</item>
+                                                            <item name="sortOrder" xsi:type="string">20</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Decidir_AdminPlanesCuotas/checkout/cart/totals/descuento</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

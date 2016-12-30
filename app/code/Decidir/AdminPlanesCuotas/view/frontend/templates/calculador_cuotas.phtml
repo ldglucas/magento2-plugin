@@ -1,0 +1,248 @@
+<?php
+/** @var $this \Decidir\AdminPlanesCuotas\Block\Catalog\Product\View\CalculadorCuotas  */
+/** @var $montoFinanciar  float */
+?>
+
+<?php $montoFinanciar  = $this->getMontoFinanciacion(); ?>
+
+<a href="javascript:void(0)" id="calcular-cuotas" class=""><span>Conocé las cuotas con tu tarjeta</span></a>
+
+<div id="modal-calculador-cuotas">
+
+    <fieldset class="fieldset review-fieldset" data-hasrequired="">
+        <div class="field required">
+            <div class="control">
+                <select name="tarjeta" id="select-tarjeta">
+                </select>
+            </div>
+        </div>
+        <div class="field required">
+            <div class="control">
+                <select name="banco" id="select-banco">
+                    <option value="">Seleccione su banco</option>
+                </select>
+            </div>
+        </div>
+        <div class="field required">
+            <div class="control">
+                <select name="cuota" id="select-cuota">
+                    <option value="">Seleccione su cuota</option>
+                </select>
+            </div>
+        </div>
+        <input type="hidden" id="plan-pago">
+    </fieldset>
+
+    <div class="cuota-calculada" style="font-size: 22px;margin-top: -35px;">
+    </div>
+</div>
+
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal',
+            'Magento_Catalog/js/price-utils'
+        ],
+        function(
+            $,
+            modal,
+            priceUtils
+        ) {
+            var planes   = <?= \Zend_Json::encode($this->getPlanesPago()) ?>;
+            var tarjetas = <?= \Zend_Json::encode($this->getTarjetas()) ?>;
+            var cuotas   = <?= \Zend_Json::encode($this->getCuotas()) ?>;
+
+            var options = {
+                type        : 'popup',
+                modalClass  : 'calculador-cuotas',
+                responsive  : false,
+                innerScroll : false,
+                title       : 'Conocé las cuotas con tu tarjeta',
+                buttons     :
+                [{
+                    text    : $.mage.__('Cerrar'),
+                    class   : '',
+                    click   : function ()
+                    {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            $(document).ready(function ()
+            {
+                var selectTarjeta = $('#select-tarjeta');
+                selectTarjeta.append("<option value=''>Seleccione su tarjeta</option>")
+
+                $.each(tarjetas, function (index,val)
+                {
+                    selectTarjeta.append("<option value='"+val.tarjeta_id+"'>"+val.tarjeta_nombre+"</option>")
+                });
+            });
+
+            $('#modal-calculador-cuotas').modal(options);
+
+            $("#calcular-cuotas").click(function()
+            {
+                $("#modal-calculador-cuotas").modal('openModal');
+            });
+
+            $('#select-tarjeta').change(function ()
+            {
+                var tarjeta_id = $(this).val();
+
+                if(tarjeta_id)
+                {
+                    var selectBanco = $('#select-banco');
+                    var selectCuota = $('#select-cuota');
+                    $('.cuota-calculada').empty();
+
+                    selectBanco.empty().append("<option value=''>Seleccione su banco</option>");
+                    selectCuota.empty().append("<option value=''>Seleccione su cuota</option>");
+
+                    $.each(planes, function(index,val)
+                    {
+                        if(val.tarjeta_id == tarjeta_id)
+                            selectBanco.append("<option value='"+val.banco_id+"'>"+val.banco_nombre+"</option>");
+                    });
+                }
+            });
+
+            $('#select-banco').change(function ()
+            {
+                var banco_id    = $(this).val();
+                var plan_pago   = $("#plan-pago");
+
+                if(banco_id)
+                {
+                    var selectCuota = $('#select-cuota');
+                    $('.cuota-calculada').empty();
+
+                    selectCuota.empty();
+                    selectCuota.append("<option value=''>Seleccione su cuota</option>");
+
+                    plan_pago.val('');
+
+                    $.each(planes, function(index,val)
+                    {
+                        if(val.tarjeta_id == $('#select-tarjeta').val() && val.banco_id == banco_id)
+                        {
+                            $("#plan-pago").val(val.plan_pago_id);
+                        }
+                    });
+
+                    if(plan_pago.val())
+                    {
+                        $.each(cuotas[plan_pago.val()], function(index,val)
+                        {
+                            var reintegro = '';
+                            var descuento = '';
+
+                            if(val.reintegro > 0)
+                            {
+                                /** porcentual */
+                                if(val.tipo_reintegro==1)
+                                    reintegro = ' + ' + val.reintegro + '% de reintegro bancario';
+
+                                /** monto fijo */
+                                if(val.tipo_reintegro==2)
+                                    reintegro = ' + $' + val.reintegro + ' de reintegro bancario';
+                            }
+
+                            if(val.descuento > 0)
+                            {
+                                /** porcentual */
+                                if(val.tipo_descuento==1)
+                                    descuento = ' + ' + val.descuento + '% de descuento';
+
+                                /** monto fijo */
+                                if(val.tipo_descuento==2)
+                                    descuento = ' + $' + val.descuento + ' de descuento';
+                            }
+
+                            if(val.cuota == 1)
+                                var txtCuota = ' cuota';
+                            else
+                                var txtCuota = ' cuotas';
+
+                            if(val.interes == 0)
+                                var optionHtml = "<option value='"+val.cuota+"'>"+val.cuota + txtCuota + " sin interés " + reintegro + descuento + "</option>";
+                            else
+                                var optionHtml = "<option value='"+val.cuota+"'>"+val.cuota + txtCuota + reintegro+ descuento +"</option>";
+
+                            selectCuota.append(optionHtml);
+                        });
+                    }
+                }
+            });
+
+            $('#select-cuota').change(function ()
+            {
+                var cuota       = $(this).val();
+                var plan_pago   = $("#plan-pago");
+
+                if(cuota)
+                {
+                    $.each(cuotas[plan_pago.val()], function(index,val)
+                    {
+                        if(val.cuota == cuota)
+                        {
+                            if(val.interes == 0)
+                                var valorCuota = <?= $montoFinanciar ?>;
+                            else
+                                var valorCuota = parseFloat(<?= $montoFinanciar ?>) + parseFloat(<?= $montoFinanciar ?> * (val.interes/100));
+
+                            var descuento = '';
+
+                            if(val.descuento > 0)
+                            {
+                                /** porcentual */
+                                if(val.tipo_descuento==1)
+                                {
+                                    var valorDescuento =  val.descuento * valorCuota / 100;
+                                    valorCuota        -= valorDescuento;
+                                    descuento          = ' + <strong>'+ val.descuento +'% de descuento</strong>';
+                                }
+
+                                /** monto fijo */
+                                if(val.tipo_descuento==2)
+                                {
+                                    valorCuota        -= val.descuento;
+                                    descuento          = ' + <strong>$'+ val.descuento +' de descuento</strong>';
+                                }
+                            }
+
+                            var valorCuotaHtml = priceUtils.formatPrice((valorCuota/val.cuota));
+
+                            var reintegro = '';
+
+                            if(val.reintegro > 0)
+                            {
+                                /** porcentual */
+                                if(val.tipo_reintegro==1)
+                                    reintegro = ' + <strong>' + val.reintegro + '% de reintegro bancario</strong><i class="mas-info"></i>';
+
+                                /** monto fijo */
+                                if(val.tipo_reintegro==2)
+                                    reintegro = ' + <strong>$' + val.reintegro + ' de reintegro bancario</strong><i class="mas-info"></i>';
+                            }
+
+                            if(val.cuota == 1)
+                                var txtCuota = ' cuota';
+                            else
+                                var txtCuota = ' cuotas';
+
+                            if(val.interes == 0)
+                                var txtCuotaSeleccionada = val.cuota + txtCuota + " sin interés "+ ' de <strong>'+ valorCuotaHtml + '</strong>'+ reintegro + descuento;
+                            else
+                                var txtCuotaSeleccionada = val.cuota + txtCuota + ' de <strong>'+ valorCuotaHtml + '</strong>' + reintegro + descuento;
+
+                            $('.cuota-calculada').html(txtCuotaSeleccionada);
+                        }
+                    });
+                }
+            });
+        }
+    );
+</script>

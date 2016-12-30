@@ -1,0 +1,252 @@
+/*****
+*
+*	.LESS estilos para AdminPlanesCuotas/adminhtml de Decidir
+*	@author Ezequiel Alba
+*
+*****/
+
+//Variables
+@color-title: #333333;
+@icon-bg-color: #efefef;
+@loader-bg-color: rgba(239,239,239, 0.9);
+
+//Mixins
+.transform-ids(@property: translateX(-50%);) {
+    transform: @property;
+    -webkit-transform: @property;
+    -moz-transform: @property;
+    -ms-transform: @property;
+    -o-transform: @property;
+}
+
+
+//Estilos
+.adminplanes-loader {
+    background-image: url('../images/loader.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: @loader-bg-color;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+ul.agregar-plan {
+	list-style: none;
+
+	li.plan-tarjeta {
+    	display: block;
+    	position: relative;
+
+        .input-box {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 15px 15px 0;
+            position: relative;
+
+            &.plan {
+                display: block;
+                margin-right: 0;
+            }
+
+            &.check-active {
+                margin: 0;
+                label {
+                    display: inline-block;
+                    margin: 0;
+                }
+            }
+
+    	    select {
+        		display: inline-block;
+        		vertical-align: middle;
+
+        		&.selector-tarjeta {
+        			min-width: 185px;
+        		}
+
+        		&.selector-banco {
+        			min-width: 345px;
+        		}
+
+                &.selector-dias {
+                    min-width: 185px;
+                    height: 75px;
+                }
+        	}
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+        	input {
+        		display: inline-block;
+        		vertical-align: middle;
+        	}
+
+            button {
+                margin: 0 0 0 -30px;
+                position: relative;
+            }
+
+        	input.prioridad {
+        		width: 100px;
+        	}
+
+        	input.nombre {
+        		width: 350px;
+        	}
+
+            .help-admin {
+                color: @color-title;
+                background-color: @icon-bg-color;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border: 1px solid #dddddd;
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                display: inline-block;
+                font-style: normal;
+                position: relative;
+                font-weight: normal;
+                vertical-align: middle;
+                margin-left: 5px;
+
+                &:after {
+                    content: '?';
+                    display: block;
+                    position: absolute;
+                    font-size: 12px;
+                    color: @color-title;
+                    left: 50%;
+                    .transform-ids(translateX(-50%););
+                }
+
+                &:hover,
+                &:focus {
+                    cursor: pointer;
+                }
+            }
+
+            #info-prioridad {
+                display: none;
+                width: 300px;
+                height: auto;
+                background-color: white;
+                border: 1px solid #dedede;
+                padding: 12px;
+                font-size: 12px;
+                position: absolute;
+                top: -95%;
+                left: -15%;
+                z-index: 99;
+
+                p {
+                    margin-bottom: 0;
+                }
+
+                &:after,
+                &:before {
+                    top: 100%;
+                    left: 45%;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                }
+
+                &:after {
+                    border-color: rgba(255, 255, 255, 0);
+                    border-top-color: #ffffff;
+                    border-width: 5px;
+                    margin-left: -5px;
+                }
+
+                &:before {
+                    border-color: rgba(222, 222, 222, 0);
+                    border-top-color: #dedede;
+                    border-width: 6px;
+                    margin-left: -6px;
+                }
+            }
+        }
+	}
+
+	ul.cuotas {
+		list-style: none;
+		border: solid 1px #ADADAD;
+    	margin: 15px 0;
+    	padding: 15px;
+
+    	li.plan-cuota {
+    		margin-bottom: 20px;
+            font-size: 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            label {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+    		input {
+    			display: inline-block;
+    			vertical-align: middle;
+    			margin-right: 15px;
+                width: 55px;
+                font-size: 14px;
+                margin-bottom: 10px;
+
+                &.etiqueta {
+                    width: 20%;
+                }
+    		}
+
+            select {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 15px;
+                min-width: 60px;
+                margin-bottom: 10px;
+                height: 33px;
+                margin-left: -25px;
+            }
+
+    		.eliminar-cuota {
+    			background-color: transparent;
+    			border-color: transparent;
+    			box-shadow: none;
+                display: inline-block;
+                vertical-align: top;
+
+    			> span {
+    				display: none;
+    			}
+
+    			&:before {
+    				content: ' ';
+                    background-image: url('../images/remove-item.png');
+                    width: 12px;
+                    height: 18px;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    display: block;
+                    overflow: hidden;
+    			}
+    		}
+    	}
+	}
+
+	li.guardar {
+		text-align: right;
+	}
+}
