@@ -66,6 +66,6 @@ class Save extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Decidir_AdminPlanesCuotas::banco_save');
+        return $this->_authorization->isAllowed('Decidir_AdminPlanesCuotas::bancos');
     }
 }

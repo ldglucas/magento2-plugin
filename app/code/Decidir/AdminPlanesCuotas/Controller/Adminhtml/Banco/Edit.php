@@ -78,7 +78,7 @@ class Edit extends  \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Decidir_AdminPlanesCuotas::banco_edit');
+        return $this->_authorization->isAllowed('Decidir_AdminPlanesCuotas::bancos');
     }
 
 }

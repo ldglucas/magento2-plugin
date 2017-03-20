@@ -9,17 +9,12 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Magento_Backend::system">
-                    <resource id="Decidir_AdminPlanesCuotas::menuPrincipal" title="Menu principal">
-                        <resource id="Decidir_AdminPlanesCuotas::index" title="index" sortOrder="10" />
-                    </resource>
-                </resource>
-                <resource id="Magento_Backend::stores">
-                    <resource id="Magento_Backend::stores_settings">
-                        <resource id="Magento_Config::config">
-                            <resource id="Decidir_AdminPlanesCuotas::config" title="AdminAdminPlanesCuotasConfig" />
-                        </resource>
-                    </resource>
+                <resource id="Decidir_ExtensionesMenu::principal" title="Decidir">
+	            <resource id="Decidir_AdminPlanesCuotas::menuPrincipal" title="Administracion de planes de pago">
+	                    <resource id="Decidir_AdminPlanesCuotas::tarjetas" title="Administrar tarjetas" sortOrder="10" />
+	                    <resource id="Decidir_AdminPlanesCuotas::bancos" title="Administrar bancos" sortOrder="20" />
+	                    <resource id="Decidir_AdminPlanesCuotas::admin" title="Administrar planes de pago" sortOrder="30" />
+		    </resource>
                 </resource>
             </resource>
         </resources>

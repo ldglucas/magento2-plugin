@@ -79,7 +79,7 @@ class Edit extends  \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Decidir_AdminPlanesCuotas::tarjeta_edit');
+        return $this->_authorization->isAllowed('Decidir_AdminPlanesCuotas::tarjetas');
     }
 
 }

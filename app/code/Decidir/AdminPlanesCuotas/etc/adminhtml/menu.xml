@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
     <menu>
-        <add id="Decidir_ExtensionesMenu::principal" title="Decidir Planes de Pago" module="Magento_Config" sortOrder="70" resource="Magento_Config::brand"/>
+        <add id="Decidir_ExtensionesMenu::principal" title="Decidir Planes de Pago" module="Magento_Config" sortOrder="70" resource="Decidir_ExtensionesMenu::principal"/>
         <add id="Decidir_AdminPlanesCuotas::menuPrincipal" title="Administración de planes de cuotas" module="Decidir_AdminPlanesCuotas" sortOrder="500" parent="Decidir_ExtensionesMenu::principal" resource="Decidir_AdminPlanesCuotas::menuPrincipal"/>
 <!--		<add id="Decidir_AdminInteres::admin" title="Administrar matriz de intereses" module="Decidir_AdminPlanesCuotas" sortOrder="100" parent="Decidir_AdminPlanesCuotas::menuPrincipal" action="adminplanescuotas/interes/admin" resource="Decidir_AdminPlanesCuotas::admin"/> -->
         <add id="Decidir_AdminPlanesCuotas::admin" title="Administrar promociones" module="Decidir_AdminPlanesCuotas" sortOrder="100" parent="Decidir_AdminPlanesCuotas::menuPrincipal" action="adminplanescuotas/planpago/admin" resource="Decidir_AdminPlanesCuotas::admin"/>
